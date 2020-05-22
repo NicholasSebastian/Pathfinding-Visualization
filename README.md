@@ -1,4 +1,4 @@
-# Pathfining Algorithms Visualizer
+# Pathfinding Algorithms Visualizer
 
 I was looking into the two algorithms commonly used for pathfinding,
 Dijkstra's algorithm and the A* algorithm. <br>
