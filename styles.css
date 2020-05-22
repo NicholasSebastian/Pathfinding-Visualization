@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#form {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  padding: 15px 20px;
+  width: 285px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+}
+
+#form > div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+#form > div > label {
+  width: 95px;
+}
+
+#form > div > input {
+  width: 150px;
+}
+
+#form > div > div {
+  line-height: 1.4;
+}
+
+#form > div > div > label {
+  margin-left: 5px;
+}
+
+#form > div > button {
+  padding: 6px 10px;
+  margin-right: 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+#output {
+  position: absolute;
+  bottom: 20px;
+  left: 315px;
+  padding: 8px 20px;
+  width: 145px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+}
+
+#output > div {
+  margin: 6px 0;
+  display: flex;
+}
+
+#output > div > label {
+  width: 70px;
+}
+
+#help {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 14px 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  line-height: 1.4;
+}
+
+#grid {
+  width: 100vw;
+  height: 100vh;
+  border-collapse: collapse;
+}
+
+#grid > tr > td {
+  border: 1px solid gray;
+}

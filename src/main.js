@@ -1,8 +1,13 @@
 import { size } from "./settings";
+
+// References to DOM elements.
 const grid = document.getElementById("grid");
+const statusText = document.getElementById("text");
 
 // Array to store node properties.
 let nodes = [];
+let sNode = null;
+let eNode = null;
 
 // Draw the grid.
 drawGrid();
@@ -83,12 +88,22 @@ function wallNode(node) {
 
 // Placing a start node event.
 function startNode(node) {
+  if (sNode != null) {
+    sNode.cell.style.backgroundColor = "#fff";
+    sNode.state = null;
+  }
+  sNode = node;
   node.cell.style.backgroundColor = "green";
   node.state = "start";
 }
 
 // Placing an end node event.
 function endNode(node) {
+  if (eNode != null) {
+    eNode.cell.style.backgroundColor = "#fff";
+    eNode.state = null;
+  }
+  eNode = node;
   node.cell.style.backgroundColor = "red";
   node.state = "end";
 }

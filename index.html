@@ -6,60 +6,8 @@
     <meta name="description" content="Pathfinding Visualizer" />
     <meta name="author" content="Nicholas Sebastian Hendrata" />
     <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Pathfinding Visualizer</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      #form {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        padding: 15px 20px;
-        background-color: rgba(0, 0, 0, 0.8);
-        color: #fff;
-      }
-
-      #form > div {
-        display: flex;
-        align-items: center;
-      }
-
-      #form > div > label {
-        width: 70px;
-      }
-
-      #form > div > input {
-        width: 150px;
-      }
-
-      #form > button {
-        padding: 6px 10px;
-      }
-
-      #help {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        padding: 15px 20px;
-        background-color: rgba(0, 0, 0, 0.8);
-        color: #fff;
-        line-height: 1.4;
-      }
-
-      #grid {
-        width: 100vw;
-        height: 100vh;
-        border-collapse: collapse;
-      }
-
-      #grid > tr > td {
-        border: 1px solid gray;
-      }
-    </style>
   </head>
   <body>
     <div id="form">
@@ -67,7 +15,42 @@
         <label>Size:</label>
         <input type="range" min="5" max="30" id="size" />
       </div>
-      <button id="clear">Clear Grid</button>
+      <div>
+        <label>Speed:</label>
+        <input type="range" min="1" max="10" id="speed" />
+      </div>
+      <div>
+        <label>Diagonal:</label>
+        <input checked type="checkbox" id="diagonal" />
+      </div>
+      <div>
+        <label>Algorithm:</label>
+        <div>
+          <input type="radio" name="algorithm" />
+          <label>Dijkstra's</label><br />
+          <input checked type="radio" name="algorithm" />
+          <label>A-star</label>
+        </div>
+      </div>
+      <div>
+        <button id="clear">Clear Grid</button>
+        <button id="run">Run</button>
+      </div>
+      <h2 id="text">Mode: Map Creation</h2>
+    </div>
+    <div id="output">
+      <div>
+        <label>Open:</label>
+        <div>0</div>
+      </div>
+      <div>
+        <label>Closed:</label>
+        <div>0</div>
+      </div>
+      <div>
+        <label>Path:</label>
+        <div>0</div>
+      </div>
     </div>
     <div id="help">
       <span>Click and Drag to draw Walls.</span><br />
