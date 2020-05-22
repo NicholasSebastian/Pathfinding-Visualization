@@ -1,20 +1,76 @@
-import { size, speed, diagonal, algorithm } from "./settings";
+import dijkstra from "./dijkstra";
+import aStar from "./a_star";
 
 // References to DOM elements.
 const grid = document.getElementById("grid");
+const clearButton = document.getElementById("clear");
+const runButton = document.getElementById("run");
+
+// References to DOM elements for input.
+const sizeInput = document.getElementById("size");
+const speedInput = document.getElementById("speed");
+const algorithmInput = document.getElementsByName("algorithm");
+
+// References to DOM elements for output.
 const statusText = document.getElementById("text");
 const openOutput = document.getElementById("open");
 const closedOutput = document.getElementById("closed");
 const pathOutput = document.getElementById("path");
+
+// Derived values from input.
+let size = sizeInput.value;
+let algorithm = algorithmInput[0].checked ? "dijkstra" : "a-star";
+export let speed = speedInput.value;
 
 // Array to store node properties.
 let nodes = [];
 let sNode = null;
 let eNode = null;
 
-// Draw the grid.
-drawGrid();
-statusText.innerHTML = "Mode: Map Creation";
+// Resize the grid when window is resized.
+window.onresize = () => {
+  refresh();
+};
+
+// Size slider.
+sizeInput.addEventListener("change", () => {
+  size = sizeInput.value;
+  refresh();
+});
+
+// Speed slider.
+speedInput.addEventListener("change", () => {
+  speed = speedInput.value;
+});
+
+// Algorithm radios.
+algorithmInput.forEach((radio) => {
+  radio.addEventListener("change", () => {
+    algorithm = algorithmInput[0].checked ? "dijkstra" : "a-star";
+  });
+});
+
+// Clear button.
+clearButton.addEventListener("click", refresh);
+
+// Run button.
+runButton.addEventListener("click", () => {
+  if (sNode != null && eNode != null) {
+    statusText.innerHTML = "Mode: Running...";
+    switch (algorithm) {
+      case "dijkstra":
+        dijkstra(nodes, sNode, eNode);
+        break;
+
+      case "a-star":
+        aStar(nodes, sNode, eNode);
+        break;
+
+      default:
+        break;
+    }
+  }
+});
 
 // Dependency for the control handlers.
 let mouseDown = false;
@@ -33,8 +89,12 @@ document.addEventListener("keyup", () => {
   eKeyDown = false;
 });
 
+// Draw the grid on start.
+drawGrid();
+statusText.innerHTML = "Mode: Map Creation";
+
 // Drawing and initializing the grid and nodes.
-export function drawGrid() {
+function drawGrid() {
   // Calculate the size of each node.
   const density = size;
   const vhRatio = window.innerWidth / window.innerHeight;
@@ -54,11 +114,17 @@ export function drawGrid() {
 }
 
 // Clearing the grid and nodes array.
-export function clearGrid() {
+function clearGrid() {
   nodes = [];
   while (grid.firstChild) {
     grid.removeChild(grid.lastChild);
   }
+}
+
+// Two in one function.
+function refresh() {
+  clearGrid();
+  drawGrid();
 }
 
 // All the things a cell needs to be a node.
