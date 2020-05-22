@@ -1,8 +1,8 @@
 module.exports = {
-  entry: ["@babel/polyfill", "./scripts/main.js"],
+  entry: ["@babel/polyfill", "./src/main.js"],
   output: {
     path: __dirname,
-    filename: "./build/bundle.js",
+    filename: "bundle.js",
   },
   module: {
     rules: [
