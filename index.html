@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pathfinding Visualizer" />
+    <meta name="author" content="Nicholas Sebastian Hendrata" />
+    <link rel="icon" href="favicon.ico" />
+    <title>Pathfinding Visualizer</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      #form {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        padding: 15px 20px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+      }
+
+      #form > div {
+        display: flex;
+        align-items: center;
+      }
+
+      #form > div > label {
+        width: 70px;
+      }
+
+      #form > div > input {
+        width: 150px;
+      }
+
+      #form > button {
+        padding: 6px 10px;
+      }
+
+      #help {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        line-height: 1.4;
+      }
+
+      #grid {
+        width: 100vw;
+        height: 100vh;
+        border-collapse: collapse;
+      }
+
+      #grid > tr > td {
+        border: 1px solid gray;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="form">
+      <div>
+        <label>Size:</label>
+        <input type="range" min="5" max="30" id="size" />
+      </div>
+      <button id="clear">Clear Grid</button>
+    </div>
+    <div id="help">
+      <span>Click and Drag to draw Walls.</span><br />
+      <span>Hold the S key and click on a Tile to place the Start node.</span>
+      <br />
+      <span>Hold the E key and click on a Tile to place the End node.</span>
+    </div>
+    <table id="grid"></table>
+    <script type="text/javascript" src="bundle.js"></script>
+  </body>
+</html>
