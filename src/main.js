@@ -1,8 +1,11 @@
-import { size } from "./settings";
+import { size, speed, diagonal, algorithm } from "./settings";
 
 // References to DOM elements.
 const grid = document.getElementById("grid");
 const statusText = document.getElementById("text");
+const openOutput = document.getElementById("open");
+const closedOutput = document.getElementById("closed");
+const pathOutput = document.getElementById("path");
 
 // Array to store node properties.
 let nodes = [];
@@ -11,6 +14,7 @@ let eNode = null;
 
 // Draw the grid.
 drawGrid();
+statusText.innerHTML = "Mode: Map Creation";
 
 // Dependency for the control handlers.
 let mouseDown = false;
@@ -82,8 +86,10 @@ function initializeNode(cell, row, col) {
 
 // Placing a wall event.
 function wallNode(node) {
-  node.cell.style.backgroundColor = "#000";
-  node.state = "wall";
+  if (node.state == null) {
+    node.cell.style.backgroundColor = "#000";
+    node.state = "wall";
+  }
 }
 
 // Placing a start node event.
