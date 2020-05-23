@@ -1,5 +1,5 @@
-import dijkstra from "./dijkstra";
-import aStar from "./a_star";
+import { dijkstra } from "./dijkstra";
+import { aStar } from "./a_star";
 
 // References to DOM elements.
 const grid = document.getElementById("grid");
@@ -20,7 +20,7 @@ const pathOutput = document.getElementById("path");
 // Derived values from input.
 let size = sizeInput.value;
 let algorithm = algorithmInput[0].checked ? "dijkstra" : "a-star";
-export let speed = speedInput.value;
+let speed = speedInput.value;
 
 // Array to store node properties.
 let nodes = [];
@@ -57,18 +57,20 @@ clearButton.addEventListener("click", refresh);
 runButton.addEventListener("click", () => {
   if (sNode != null && eNode != null) {
     statusText.innerHTML = "Mode: Running...";
+    let visited = [];
     switch (algorithm) {
       case "dijkstra":
-        dijkstra(nodes, sNode, eNode);
+        visited = dijkstra(nodes, sNode);
         break;
-
       case "a-star":
-        aStar(nodes, sNode, eNode);
+        visited = aStar(nodes, sNode);
         break;
-
       default:
         break;
     }
+    // TODO: WHY THE FUCK IS VISITED UNDEFINED?!!
+    // I'M LOSING MY SANITY WITH EVERY SECOND FFS
+    animate(visited);
   }
 });
 
@@ -179,3 +181,14 @@ function endNode(node) {
   node.cell.style.backgroundColor = "red";
   node.state = "end";
 }
+
+function animate(visited) {
+  let i = 0;
+  const loop = setInterval(() => {
+    if (i == visited.length) clearInterval(loop);
+    visited[i].cell.style.backgroundColor = "blue";
+    i++;
+  }, 400 / speed);
+}
+
+function backtrack(shortestPath) {}
